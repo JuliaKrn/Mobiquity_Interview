@@ -26,9 +26,14 @@ class GalleryViewController: UIViewController, GalleryViewProtocol {
 
     private var galleryCollectionView: UICollectionView!
     private var isLoading: Bool = false
+    
     private var viewValues: GalleryViewValuesProtocol {
         return viewModel.viewValues
     }
+    
+    private lazy var loadingIndicator: UIActivityIndicatorView! = {
+        return setupActivityIndicatorView()
+    }()
     
     // MARK: Methods
     override func viewDidLoad() {
@@ -68,11 +73,13 @@ extension GalleryViewController {
     private func renderLoadedState(values: GalleryViewValuesProtocol) {
         isLoading = false
         galleryCollectionView.reloadData()
+        updateScreenLoader(shouldEnable: false)
     }
     
     private func renderErrorState(values: GalleryViewValuesProtocol) {
         isLoading = false
         galleryCollectionView.reloadData()
+        updateScreenLoader(shouldEnable: false)
         showError()
     }
     
@@ -86,7 +93,19 @@ extension GalleryViewController {
         
         present(alert, animated: true, completion: nil)
     }
-
+    
+    private func showSearchEmptyResult(for theme: String) {
+        // TODO:
+    }
+    
+    // MARK: Loader
+    
+    private func updateScreenLoader(shouldEnable: Bool) {
+        galleryCollectionView.isUserInteractionEnabled = !shouldEnable
+        loadingIndicator.isHidden = !shouldEnable
+        shouldEnable ? loadingIndicator.startAnimating() : loadingIndicator.stopAnimating()
+    }
+    
 }
 
 // MARK: - UI Setup
@@ -103,13 +122,21 @@ extension GalleryViewController {
     }
     
     private func setupSearchController() {
-        let searchController = UISearchController(searchResultsController: SearchResultsController())
-        navigationItem.searchController = searchController
+        let resultsController = SearchResultsController()
+        let searchController = UISearchController(searchResultsController: resultsController)
         
+        searchController.searchResultsUpdater = resultsController
+        searchController.searchBar.delegate = self
+        resultsController.didChosePreviousTheme = { [weak self] theme in
+            self?.didChose(theme: theme)
+        }
+        resultsController.previousSearchList = { [weak self] in
+            self?.viewModel.getSearchList() ?? []
+        }
+        
+        navigationItem.searchController = searchController
         navigationItem.largeTitleDisplayMode = .automatic
         navigationItem.hidesSearchBarWhenScrolling = true
-        
-        searchController.delegate = self
     }
 
     private func setupGallerySection() {
@@ -139,6 +166,16 @@ extension GalleryViewController {
         return collectionView
     }
 
+    private func setupActivityIndicatorView() -> UIActivityIndicatorView {
+        let view = UIActivityIndicatorView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.style = .large
+        view.color = .systemIndigo
+        setupConstraints(for: view)
+        
+        return view
+    }
+    
     // MARK: Constraints
     private func setupConstraints(for collectionView: UICollectionView) {
         view.addSubview(collectionView)
@@ -154,6 +191,17 @@ extension GalleryViewController {
             .isActive = true
         collectionView.trailingAnchor
             .constraint(equalTo: view.trailingAnchor, constant: -Constants.standardPadding)
+            .isActive = true
+    }
+    
+    private func setupConstraints(for indicatorView: UIActivityIndicatorView) {
+        view.addSubview(indicatorView)
+        
+        indicatorView.centerYAnchor
+            .constraint(equalTo: view.centerYAnchor)
+            .isActive = true
+        indicatorView.centerXAnchor
+            .constraint(equalTo: view.centerXAnchor)
             .isActive = true
     }
 
@@ -191,7 +239,7 @@ extension GalleryViewController: UICollectionViewDataSource {
             return UICollectionReusableView()
         }
         
-        let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "LoadingReusableView", for: indexPath as IndexPath)
+        let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: LoadingReusableView.reuseIdentifier, for: indexPath as IndexPath)
         return footerView
     }
 
@@ -219,7 +267,23 @@ extension GalleryViewController: UICollectionViewDelegate {
     // TODO: add state when there is no moro photos to load
 }
 
-// MARK: - Search Controller Delegate
-extension GalleryViewController: UISearchControllerDelegate {
+// MARK: - Search Bar Delegates
+extension GalleryViewController: UISearchBarDelegate {
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let text = searchBar.text, !text.isEmpty else {
+            return
+        }
+        
+        didChose(theme: text)
+    }
+    
+    private func didChose(theme:String) {
+        updateScreenLoader(shouldEnable: true)
+        viewModel.didChoseTheme(theme)
+        
+        navigationItem.searchController?.searchBar.text = ""
+        navigationItem.searchController?.dismiss(animated: true, completion: nil)
+    }
+
 }

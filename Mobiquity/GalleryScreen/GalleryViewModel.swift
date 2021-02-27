@@ -14,6 +14,7 @@ protocol GalleryViewModelProtocol {
     
     func didChoseTheme(_ theme: String)
     func loadMorePhotos()
+    func getSearchList() -> [String]?
 }
 
 class GalleryViewModel: GalleryViewModelProtocol {
@@ -21,6 +22,10 @@ class GalleryViewModel: GalleryViewModelProtocol {
     private enum ViewThemeType {
         case `default`
         case theme(String)
+    }
+    
+    private enum Constants {
+        static let photoSearchListKey = "PhotoSearchList"
     }
     
     // MARK: Properties
@@ -57,10 +62,7 @@ class GalleryViewModel: GalleryViewModelProtocol {
     func didChoseTheme(_ theme: String) {
         viewTheme = .theme(theme)
         fetchThemedPhotos(theme: theme)
-    }
-    
-    func didStartSearch() {
-        // TODO: will be called when user starts typing
+        updateSearchList(with: theme)
     }
     
     func loadMorePhotos() {
@@ -70,6 +72,10 @@ class GalleryViewModel: GalleryViewModelProtocol {
         case .theme(let theme):
             fetchThemedPhotos(theme: theme)
         }
+    }
+    
+    func getSearchList() -> [String]? {
+        UserDefaults.standard.stringArray(forKey: Constants.photoSearchListKey)
     }
     
 }
@@ -96,10 +102,19 @@ extension GalleryViewModel {
         })
     }
     
-    private func updateLatestSearchList(with theme: String) {
-        // TODO: add list of recently looked for themes
+    private func updateSearchList(with theme: String) {
+        guard var searchList = UserDefaults.standard.stringArray(forKey: Constants.photoSearchListKey) else {
+            UserDefaults.standard.setValue([theme], forKey: Constants.photoSearchListKey)
+            return
+        }
+        
+        if searchList.contains(theme) {
+            return
+        }
+        
+        searchList.append(theme)
+        print("user defaults : \(searchList)")
+        UserDefaults.standard.setValue(searchList, forKey: Constants.photoSearchListKey)
     }
-    
+
 }
-
-

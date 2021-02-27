@@ -9,14 +9,26 @@ import UIKit
 
 final class SearchResultsController: UIViewController {
     
-    let dummyArray = ["cats", "dogs", "city", "ocean"]
+    var didChosePreviousTheme: ((String) -> Void)?
+    var previousSearchList: (() -> [String])?
     
+    private var previousThemes: [String] = []
+    private var filteredPreviousThemes: [String] = []
     private var previousSearchTableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+       
         previousSearchTableView = setupTableView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        previousThemes = previousSearchList?() ?? []
+        filteredPreviousThemes = previousSearchList?() ?? []
+        
+        previousSearchTableView.reloadData()
     }
     
     private func setupTableView() -> UITableView {
@@ -46,6 +58,11 @@ final class SearchResultsController: UIViewController {
             .constraint(equalTo: view.trailingAnchor)
             .isActive = true
     }
+    
+    private func filterThemes(with searchText: String) {
+        filteredPreviousThemes = previousThemes.filter { $0.lowercased().contains(searchText.lowercased()) }
+        previousSearchTableView.reloadData()
+    }
 
 }
 
@@ -53,17 +70,33 @@ final class SearchResultsController: UIViewController {
 extension SearchResultsController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dummyArray.count
+        return filteredPreviousThemes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: "Cell")
-        cell.textLabel?.text = dummyArray[indexPath.row]
+        cell.textLabel?.text = filteredPreviousThemes[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       // go back to main vc and start loading
+        guard filteredPreviousThemes.indices.contains(indexPath.row) else {
+            return
+        }
+        
+        didChosePreviousTheme?(filteredPreviousThemes[indexPath.row])
     }
     
+}
+
+// MARK: UISearchResultsUpdating
+extension SearchResultsController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else {
+            return
+        }
+
+        filterThemes(with: text)
+    }
 }
