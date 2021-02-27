@@ -23,7 +23,7 @@ final class AppNavigationManager {
     func showGalleryScreen() {
         let viewController = GalleryViewController()
         
-        let viewModel = GalleryViewModel(view: viewController)
+        let viewModel = GalleryViewModel(view: viewController, apiManager: APIManager.shared)
         viewController.viewModel = viewModel
         
         navigation.pushViewController(viewController, animated: true)

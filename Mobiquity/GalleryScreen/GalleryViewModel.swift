@@ -14,6 +14,7 @@ protocol GalleryViewModelProtocol {
     var updateValues: (() -> Void) { get set }
     
     func didChoseTheme(_ theme: String)
+    func loadMorePhotos()
 }
 
 class GalleryViewModel: GalleryViewModelProtocol {
@@ -23,13 +24,16 @@ class GalleryViewModel: GalleryViewModelProtocol {
             self.updateValues()
         }
     }
-    
+
     var view: GalleryViewProtocol
     var viewValues: GalleryViewValuesProtocol
     var updateValues: (() -> Void) = { }
     
-    init(view: GalleryViewProtocol, additionalManagers: Any? = nil) {
+    var apiManager: APIManagerProtocol
+    
+    init(view: GalleryViewProtocol, apiManager: APIManagerProtocol, additionalManagers: Any? = nil) {
         self.view = view
+        self.apiManager = apiManager
         
         viewValues = GalleryViewValues()
         viewState = .loading(viewValues)
@@ -44,12 +48,28 @@ class GalleryViewModel: GalleryViewModelProtocol {
     func didStartSearch() {
         // TODO: will be called when user starts typing
     }
+    
+    func loadMorePhotos() {
+        viewState = .loading(viewValues)
+        
+        apiManager.fetchDefaultPhotos { (images) in
+            self.viewValues.photosToShow = images
+            self.viewState = .loaded(self.viewValues)
+        }
+    }
 }
 
 extension GalleryViewModel {
     
     private func fetchDefaultPhotos() {
+      //  apiManager.fetchInterestingPhotos()
         // TODO: add loading photos of the day
+        viewState = .loading(viewValues)
+        
+        apiManager.fetchDefaultPhotos { (images) in
+            self.viewValues.photosToShow = images
+            self.viewState = .loaded(self.viewValues)
+        }
     }
     
     private func updateLatestSearchList(with theme: String) {

@@ -1,0 +1,6 @@
+framework module Pods_Mobiquity {
+  umbrella header "Pods-Mobiquity-umbrella.h"
+
+  export *
+  module * { export * }
+}

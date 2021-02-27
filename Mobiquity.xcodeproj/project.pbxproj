@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -33,6 +33,13 @@
 		3FCF1D6825E8F192007C5EE8 /* SearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCF1D6725E8F192007C5EE8 /* SearchResultsController.swift */; };
 		3FCF1D6925E8F192007C5EE8 /* SearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCF1D6725E8F192007C5EE8 /* SearchResultsController.swift */; };
 		3FCF1D6A25E8F192007C5EE8 /* SearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCF1D6725E8F192007C5EE8 /* SearchResultsController.swift */; };
+		3FCF1D7B25E90599007C5EE8 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCF1D7A25E90599007C5EE8 /* APIManager.swift */; };
+		3FCF1D7C25E90599007C5EE8 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCF1D7A25E90599007C5EE8 /* APIManager.swift */; };
+		3FCF1D7D25E90599007C5EE8 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCF1D7A25E90599007C5EE8 /* APIManager.swift */; };
+		3FCF1D9025E9A222007C5EE8 /* LoadingReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCF1D8F25E9A222007C5EE8 /* LoadingReusableView.swift */; };
+		3FCF1D9125E9A222007C5EE8 /* LoadingReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCF1D8F25E9A222007C5EE8 /* LoadingReusableView.swift */; };
+		3FCF1D9225E9A222007C5EE8 /* LoadingReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCF1D8F25E9A222007C5EE8 /* LoadingReusableView.swift */; };
+		8A760DBEC5E004035B9CD366 /* Pods_Mobiquity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 318D35C52A9A1B477B5CEB10 /* Pods_Mobiquity.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +60,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04F6194BD67E9D342EC2FBF4 /* Pods-Mobiquity.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mobiquity.debug.xcconfig"; path = "Target Support Files/Pods-Mobiquity/Pods-Mobiquity.debug.xcconfig"; sourceTree = "<group>"; };
+		318D35C52A9A1B477B5CEB10 /* Pods_Mobiquity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mobiquity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FCF1CDF25E7DEE0007C5EE8 /* Mobiquity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mobiquity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FCF1CE225E7DEE0007C5EE8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3FCF1CEB25E7DEE7007C5EE8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -71,6 +80,9 @@
 		3FCF1D3D25E7E0A2007C5EE8 /* ViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
 		3FCF1D4425E7E0F1007C5EE8 /* GalleryViewValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewValues.swift; sourceTree = "<group>"; };
 		3FCF1D6725E8F192007C5EE8 /* SearchResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsController.swift; sourceTree = "<group>"; };
+		3FCF1D7A25E90599007C5EE8 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		3FCF1D8F25E9A222007C5EE8 /* LoadingReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingReusableView.swift; sourceTree = "<group>"; };
+		E6605BBFDDE55337C03FC33D /* Pods-Mobiquity.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mobiquity.release.xcconfig"; path = "Target Support Files/Pods-Mobiquity/Pods-Mobiquity.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A760DBEC5E004035B9CD366 /* Pods_Mobiquity.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +111,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1111C46CE1AE6815288C0BA0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				04F6194BD67E9D342EC2FBF4 /* Pods-Mobiquity.debug.xcconfig */,
+				E6605BBFDDE55337C03FC33D /* Pods-Mobiquity.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		3FCF1CD625E7DEE0007C5EE8 = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +127,8 @@
 				3FCF1CF825E7DEE7007C5EE8 /* MobiquityTests */,
 				3FCF1D0325E7DEE7007C5EE8 /* MobiquityUITests */,
 				3FCF1CE025E7DEE0007C5EE8 /* Products */,
+				1111C46CE1AE6815288C0BA0 /* Pods */,
+				DD915BEE1AE3D965D74DA5AA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -158,6 +182,7 @@
 				3FCF1D4425E7E0F1007C5EE8 /* GalleryViewValues.swift */,
 				3FCF1D2F25E7E03D007C5EE8 /* GalleryCollectionViewCell.swift */,
 				3FCF1D6725E8F192007C5EE8 /* SearchResultsController.swift */,
+				3FCF1D8F25E9A222007C5EE8 /* LoadingReusableView.swift */,
 			);
 			path = GalleryScreen;
 			sourceTree = "<group>";
@@ -174,8 +199,17 @@
 		3FCF1D5525E7F9B9007C5EE8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3FCF1D7A25E90599007C5EE8 /* APIManager.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		DD915BEE1AE3D965D74DA5AA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				318D35C52A9A1B477B5CEB10 /* Pods_Mobiquity.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,9 +219,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3FCF1D0925E7DEE7007C5EE8 /* Build configuration list for PBXNativeTarget "Mobiquity" */;
 			buildPhases = (
+				1BBC32DF5D57C0AA8F0AE4AB /* [CP] Check Pods Manifest.lock */,
 				3FCF1CDB25E7DEE0007C5EE8 /* Sources */,
 				3FCF1CDC25E7DEE0007C5EE8 /* Frameworks */,
 				3FCF1CDD25E7DEE0007C5EE8 /* Resources */,
+				C1E263B4CB6E6B2C15380599 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -302,6 +338,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1BBC32DF5D57C0AA8F0AE4AB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Mobiquity-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C1E263B4CB6E6B2C15380599 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Mobiquity/Pods-Mobiquity-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Mobiquity/Pods-Mobiquity-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Mobiquity/Pods-Mobiquity-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3FCF1CDB25E7DEE0007C5EE8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -310,10 +388,12 @@
 				3FCF1D2925E7DFED007C5EE8 /* GalleryViewController.swift in Sources */,
 				3FCF1D3725E7E07D007C5EE8 /* GalleryViewModel.swift in Sources */,
 				3FCF1D3E25E7E0A2007C5EE8 /* ViewState.swift in Sources */,
+				3FCF1D7B25E90599007C5EE8 /* APIManager.swift in Sources */,
 				3FCF1D3025E7E03D007C5EE8 /* GalleryCollectionViewCell.swift in Sources */,
 				3FCF1D6825E8F192007C5EE8 /* SearchResultsController.swift in Sources */,
 				3FCF1CE325E7DEE0007C5EE8 /* AppDelegate.swift in Sources */,
 				3FCF1D2225E7DFB4007C5EE8 /* AppNavigationManager.swift in Sources */,
+				3FCF1D9025E9A222007C5EE8 /* LoadingReusableView.swift in Sources */,
 				3FCF1D4525E7E0F1007C5EE8 /* GalleryViewValues.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -325,10 +405,12 @@
 				3FCF1D2A25E7DFED007C5EE8 /* GalleryViewController.swift in Sources */,
 				3FCF1D3825E7E07D007C5EE8 /* GalleryViewModel.swift in Sources */,
 				3FCF1D3F25E7E0A2007C5EE8 /* ViewState.swift in Sources */,
+				3FCF1D7C25E90599007C5EE8 /* APIManager.swift in Sources */,
 				3FCF1D3125E7E03D007C5EE8 /* GalleryCollectionViewCell.swift in Sources */,
 				3FCF1D6925E8F192007C5EE8 /* SearchResultsController.swift in Sources */,
 				3FCF1CFA25E7DEE7007C5EE8 /* MobiquityTests.swift in Sources */,
 				3FCF1D2325E7DFB4007C5EE8 /* AppNavigationManager.swift in Sources */,
+				3FCF1D9125E9A222007C5EE8 /* LoadingReusableView.swift in Sources */,
 				3FCF1D4625E7E0F1007C5EE8 /* GalleryViewValues.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -340,10 +422,12 @@
 				3FCF1D2B25E7DFED007C5EE8 /* GalleryViewController.swift in Sources */,
 				3FCF1D3925E7E07D007C5EE8 /* GalleryViewModel.swift in Sources */,
 				3FCF1D4025E7E0A2007C5EE8 /* ViewState.swift in Sources */,
+				3FCF1D7D25E90599007C5EE8 /* APIManager.swift in Sources */,
 				3FCF1D3225E7E03D007C5EE8 /* GalleryCollectionViewCell.swift in Sources */,
 				3FCF1D6A25E8F192007C5EE8 /* SearchResultsController.swift in Sources */,
 				3FCF1D0525E7DEE7007C5EE8 /* MobiquityUITests.swift in Sources */,
 				3FCF1D2425E7DFB4007C5EE8 /* AppNavigationManager.swift in Sources */,
+				3FCF1D9225E9A222007C5EE8 /* LoadingReusableView.swift in Sources */,
 				3FCF1D4725E7E0F1007C5EE8 /* GalleryViewValues.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -493,6 +577,7 @@
 		};
 		3FCF1D0A25E7DEE7007C5EE8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04F6194BD67E9D342EC2FBF4 /* Pods-Mobiquity.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -512,6 +597,7 @@
 		};
 		3FCF1D0B25E7DEE7007C5EE8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E6605BBFDDE55337C03FC33D /* Pods-Mobiquity.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

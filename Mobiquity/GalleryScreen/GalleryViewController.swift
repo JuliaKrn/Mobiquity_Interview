@@ -24,16 +24,11 @@ class GalleryViewController: UIViewController, GalleryViewProtocol {
     // MARK: Properties
     var viewModel: GalleryViewModelProtocol!
 
-    private var searchStackView: UIStackView!
-    
     private var galleryCollectionView: UICollectionView!
-    
-    private var searchBar: UISearchBar!
-    
-    private lazy var cellSize: CGSize = {
-        let side = (view.frame.width / 2 - Constants.standardPadding)
-        return CGSize(width: side, height: side)
-    }()
+    private var isLoading: Bool = false
+    private var viewValues: GalleryViewValuesProtocol {
+        return viewModel.viewValues
+    }
     
     // MARK: Methods
     override func viewDidLoad() {
@@ -66,20 +61,22 @@ extension GalleryViewController {
     }
     
     private func renderLoadingState(values: GalleryViewValuesProtocol) {
-        // 1. Start loading
+        isLoading = true
+        galleryCollectionView.reloadData()
     }
     
     private func renderLoadedState(values: GalleryViewValuesProtocol) {
-        // 1. Stop loading
-        // 2. Reload collection view
+        isLoading = false
+        galleryCollectionView.reloadData()
     }
     
     private func renderErrorState(values: GalleryViewValuesProtocol) {
-        // 1. Stop loading
-        // 2. Show error
+        isLoading = false
+        galleryCollectionView.reloadData()
+        showError()
     }
     
-    // MARK: Error & Loader
+    // MARK: Error
     private func showError() {
         let alert = UIAlertController(title: viewModel.viewValues.errorTitle,
                                       message: viewModel.viewValues.errorMessage,
@@ -89,9 +86,7 @@ extension GalleryViewController {
         
         present(alert, animated: true, completion: nil)
     }
-    
-    // TODO: add loader
-    
+
 }
 
 // MARK: - UI Setup
@@ -123,7 +118,8 @@ extension GalleryViewController {
 
     private func setupCollectionView() -> UICollectionView {
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.itemSize = cellSize
+        let side = view.frame.width / 2 - Constants.standardPadding
+        flowLayout.itemSize = CGSize(width: side, height: side)
         flowLayout.scrollDirection = .vertical
         flowLayout.minimumLineSpacing = 0.0
         flowLayout.minimumInteritemSpacing = 0.0
@@ -131,25 +127,18 @@ extension GalleryViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .clear
+        collectionView.showsVerticalScrollIndicator = false
+        
         collectionView.register(GalleryCollectionViewCell.self, forCellWithReuseIdentifier: GalleryCollectionViewCell.reuseIdentifier)
+        collectionView.register(LoadingReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: LoadingReusableView.reuseIdentifier)
         
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.prefetchDataSource = self
         setupConstraints(for: collectionView)
         
         return collectionView
     }
-    
-    private func setupActivityIndicatorView() -> UIActivityIndicatorView {
-        let view = UIActivityIndicatorView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.style = .large
-        setupConstraints(for: view)
-        
-        return view
-    }
-    
+
     // MARK: Constraints
     private func setupConstraints(for collectionView: UICollectionView) {
         view.addSubview(collectionView)
@@ -167,56 +156,70 @@ extension GalleryViewController {
             .constraint(equalTo: view.trailingAnchor, constant: -Constants.standardPadding)
             .isActive = true
     }
-    
-    private func setupConstraints(for indicatorView: UIActivityIndicatorView) {
-        view.addSubview(indicatorView)
-        
-        indicatorView.centerYAnchor
-            .constraint(equalTo: view.centerYAnchor)
-            .isActive = true
-        indicatorView.centerXAnchor
-            .constraint(equalTo: view.centerXAnchor)
-            .isActive = true
-    }
-}
 
-extension GalleryViewController: UISearchControllerDelegate {
-    
 }
 
 // MARK: - Collection View Data & Delegate
-extension GalleryViewController: UICollectionViewDelegate {
-    
-}
-
 extension GalleryViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // TODO: add real data
-        return 20
-    }
     
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewValues.photosToShow.count
+    }
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GalleryCollectionViewCell", for: indexPath) as? GalleryCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GalleryCollectionViewCell.reuseIdentifier, for: indexPath) as? GalleryCollectionViewCell else {
             return UICollectionViewCell()
         }
         
-        // TODO: add real data
-        let image = UIImage(named: "photo_placeholder_icon")!
+        guard viewValues.photosToShow.indices.contains(indexPath.row) else {
+            return cell
+        }
+        
+        let image = viewValues.photosToShow[indexPath.row]
         cell.setup(with: image)
         
         return cell
     }
     
-}
-
-extension GalleryViewController: UICollectionViewDataSourcePrefetching {
-    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+    // Due to a bug in Swift related to generic subclases, we have to specify ObjC delegate method name
+    // if it's different than Swift name (https://bugs.swift.org/browse/SR-2817).
+    @objc (collectionView:viewForSupplementaryElementOfKind:atIndexPath:)
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
+        guard kind == UICollectionView.elementKindSectionFooter else {
+            return UICollectionReusableView()
+        }
+        
+        let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "LoadingReusableView", for: indexPath as IndexPath)
+        return footerView
+    }
+
+    @objc (collectionView:layout:referenceSizeForFooterInSection:)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        
+        if isLoading {
+            return CGSize(width: collectionView.bounds.width, height: 100)
+        } else {
+            return CGSize.zero
+        }
     }
     
 }
 
-extension GalleryViewController: UISearchBarDelegate {
+extension GalleryViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
+        if indexPath.row == (viewValues.photosToShow.count / 2) && !isLoading {
+            isLoading = true
+            viewModel.loadMorePhotos()
+        }
+    }
+    
+    // TODO: add state when there is no moro photos to load
+}
+
+// MARK: - Search Controller Delegate
+extension GalleryViewController: UISearchControllerDelegate {
     
 }
