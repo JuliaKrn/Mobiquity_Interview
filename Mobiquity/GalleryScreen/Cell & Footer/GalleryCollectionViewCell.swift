@@ -7,11 +7,11 @@
 
 import UIKit
 
-class GalleryCollectionViewCell: UICollectionViewCell {
+final class GalleryCollectionViewCell: UICollectionViewCell {
     
     static let reuseIdentifier = "GalleryCollectionViewCell"
     
-    lazy var photoImageView: UIImageView = {
+    private lazy var photoImageView: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit

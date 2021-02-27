@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchResultsController: UIViewController {
+final class SearchResultsController: UIViewController {
     
     let dummyArray = ["cats", "dogs", "city", "ocean"]
     

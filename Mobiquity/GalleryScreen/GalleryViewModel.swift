@@ -10,7 +10,6 @@ import Foundation
 protocol GalleryViewModelProtocol {
     var viewState: ViewState<GalleryViewValuesProtocol> { get }
     var viewValues: GalleryViewValuesProtocol { get }
-    
     var updateValues: (() -> Void) { get set }
     
     func didChoseTheme(_ theme: String)
@@ -19,18 +18,31 @@ protocol GalleryViewModelProtocol {
 
 class GalleryViewModel: GalleryViewModelProtocol {
     
+    private enum ViewThemeType {
+        case `default`
+        case theme(String)
+    }
+    
+    // MARK: Properties
     var viewState: ViewState<GalleryViewValuesProtocol> {
         didSet {
             self.updateValues()
         }
     }
 
-    var view: GalleryViewProtocol
+    let view: GalleryViewProtocol
     var viewValues: GalleryViewValuesProtocol
     var updateValues: (() -> Void) = { }
     
-    var apiManager: APIManagerProtocol
+    private let apiManager: APIManagerProtocol
     
+    private var viewTheme: ViewThemeType {
+        didSet {
+            apiManager.reset()
+        }
+    }
+    
+    // MARK: Public Methods
     init(view: GalleryViewProtocol, apiManager: APIManagerProtocol, additionalManagers: Any? = nil) {
         self.view = view
         self.apiManager = apiManager
@@ -38,11 +50,13 @@ class GalleryViewModel: GalleryViewModelProtocol {
         viewValues = GalleryViewValues()
         viewState = .loading(viewValues)
         
+        viewTheme = .default
         fetchDefaultPhotos()
     }
     
     func didChoseTheme(_ theme: String) {
-        // TODO: start load
+        viewTheme = .theme(theme)
+        fetchThemedPhotos(theme: theme)
     }
     
     func didStartSearch() {
@@ -50,26 +64,36 @@ class GalleryViewModel: GalleryViewModelProtocol {
     }
     
     func loadMorePhotos() {
+        switch viewTheme {
+        case .default:
+            fetchDefaultPhotos()
+        case .theme(let theme):
+            fetchThemedPhotos(theme: theme)
+        }
+    }
+    
+}
+
+// MARK: Private Methods
+extension GalleryViewModel {
+    
+    private func fetchDefaultPhotos() {
         viewState = .loading(viewValues)
-        
-        apiManager.fetchDefaultPhotos { (images) in
+
+        apiManager.fetchDefaultPhotos { (images, canLoadMore) in
             self.viewValues.photosToShow = images
             self.viewState = .loaded(self.viewValues)
         }
     }
-}
 
-extension GalleryViewModel {
     
-    private func fetchDefaultPhotos() {
-      //  apiManager.fetchInterestingPhotos()
-        // TODO: add loading photos of the day
+    private func fetchThemedPhotos(theme: String) {
         viewState = .loading(viewValues)
-        
-        apiManager.fetchDefaultPhotos { (images) in
+
+        apiManager.fetchThemedPhotos(theme: theme, completion: { (images, canLoadMore) in
             self.viewValues.photosToShow = images
             self.viewState = .loaded(self.viewValues)
-        }
+        })
     }
     
     private func updateLatestSearchList(with theme: String) {

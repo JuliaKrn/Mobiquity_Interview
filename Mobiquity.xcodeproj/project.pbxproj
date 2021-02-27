@@ -39,6 +39,12 @@
 		3FCF1D9025E9A222007C5EE8 /* LoadingReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCF1D8F25E9A222007C5EE8 /* LoadingReusableView.swift */; };
 		3FCF1D9125E9A222007C5EE8 /* LoadingReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCF1D8F25E9A222007C5EE8 /* LoadingReusableView.swift */; };
 		3FCF1D9225E9A222007C5EE8 /* LoadingReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCF1D8F25E9A222007C5EE8 /* LoadingReusableView.swift */; };
+		3FF5DF3525EA720C0051131D /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF5DF3425EA720C0051131D /* SessionManager.swift */; };
+		3FF5DF3625EA720C0051131D /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF5DF3425EA720C0051131D /* SessionManager.swift */; };
+		3FF5DF3725EA720C0051131D /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF5DF3425EA720C0051131D /* SessionManager.swift */; };
+		3FF5DF3C25EA736F0051131D /* RequestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF5DF3B25EA736F0051131D /* RequestResult.swift */; };
+		3FF5DF3D25EA736F0051131D /* RequestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF5DF3B25EA736F0051131D /* RequestResult.swift */; };
+		3FF5DF3E25EA736F0051131D /* RequestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF5DF3B25EA736F0051131D /* RequestResult.swift */; };
 		8A760DBEC5E004035B9CD366 /* Pods_Mobiquity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 318D35C52A9A1B477B5CEB10 /* Pods_Mobiquity.framework */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +88,8 @@
 		3FCF1D6725E8F192007C5EE8 /* SearchResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsController.swift; sourceTree = "<group>"; };
 		3FCF1D7A25E90599007C5EE8 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		3FCF1D8F25E9A222007C5EE8 /* LoadingReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingReusableView.swift; sourceTree = "<group>"; };
+		3FF5DF3425EA720C0051131D /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		3FF5DF3B25EA736F0051131D /* RequestResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestResult.swift; sourceTree = "<group>"; };
 		E6605BBFDDE55337C03FC33D /* Pods-Mobiquity.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mobiquity.release.xcconfig"; path = "Target Support Files/Pods-Mobiquity/Pods-Mobiquity.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -177,12 +185,11 @@
 		3FCF1D5325E7F954007C5EE8 /* GalleryScreen */ = {
 			isa = PBXGroup;
 			children = (
+				3FF5DF4325EA86650051131D /* SearchController */,
+				3FF5DF4225EA86320051131D /* Cell & Footer */,
 				3FCF1D2825E7DFED007C5EE8 /* GalleryViewController.swift */,
 				3FCF1D3625E7E07D007C5EE8 /* GalleryViewModel.swift */,
 				3FCF1D4425E7E0F1007C5EE8 /* GalleryViewValues.swift */,
-				3FCF1D2F25E7E03D007C5EE8 /* GalleryCollectionViewCell.swift */,
-				3FCF1D6725E8F192007C5EE8 /* SearchResultsController.swift */,
-				3FCF1D8F25E9A222007C5EE8 /* LoadingReusableView.swift */,
 			);
 			path = GalleryScreen;
 			sourceTree = "<group>";
@@ -200,8 +207,27 @@
 			isa = PBXGroup;
 			children = (
 				3FCF1D7A25E90599007C5EE8 /* APIManager.swift */,
+				3FF5DF3425EA720C0051131D /* SessionManager.swift */,
+				3FF5DF3B25EA736F0051131D /* RequestResult.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		3FF5DF4225EA86320051131D /* Cell & Footer */ = {
+			isa = PBXGroup;
+			children = (
+				3FCF1D2F25E7E03D007C5EE8 /* GalleryCollectionViewCell.swift */,
+				3FCF1D8F25E9A222007C5EE8 /* LoadingReusableView.swift */,
+			);
+			path = "Cell & Footer";
+			sourceTree = "<group>";
+		};
+		3FF5DF4325EA86650051131D /* SearchController */ = {
+			isa = PBXGroup;
+			children = (
+				3FCF1D6725E8F192007C5EE8 /* SearchResultsController.swift */,
+			);
+			path = SearchController;
 			sourceTree = "<group>";
 		};
 		DD915BEE1AE3D965D74DA5AA /* Frameworks */ = {
@@ -391,10 +417,12 @@
 				3FCF1D7B25E90599007C5EE8 /* APIManager.swift in Sources */,
 				3FCF1D3025E7E03D007C5EE8 /* GalleryCollectionViewCell.swift in Sources */,
 				3FCF1D6825E8F192007C5EE8 /* SearchResultsController.swift in Sources */,
+				3FF5DF3C25EA736F0051131D /* RequestResult.swift in Sources */,
 				3FCF1CE325E7DEE0007C5EE8 /* AppDelegate.swift in Sources */,
 				3FCF1D2225E7DFB4007C5EE8 /* AppNavigationManager.swift in Sources */,
 				3FCF1D9025E9A222007C5EE8 /* LoadingReusableView.swift in Sources */,
 				3FCF1D4525E7E0F1007C5EE8 /* GalleryViewValues.swift in Sources */,
+				3FF5DF3525EA720C0051131D /* SessionManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,10 +436,12 @@
 				3FCF1D7C25E90599007C5EE8 /* APIManager.swift in Sources */,
 				3FCF1D3125E7E03D007C5EE8 /* GalleryCollectionViewCell.swift in Sources */,
 				3FCF1D6925E8F192007C5EE8 /* SearchResultsController.swift in Sources */,
+				3FF5DF3D25EA736F0051131D /* RequestResult.swift in Sources */,
 				3FCF1CFA25E7DEE7007C5EE8 /* MobiquityTests.swift in Sources */,
 				3FCF1D2325E7DFB4007C5EE8 /* AppNavigationManager.swift in Sources */,
 				3FCF1D9125E9A222007C5EE8 /* LoadingReusableView.swift in Sources */,
 				3FCF1D4625E7E0F1007C5EE8 /* GalleryViewValues.swift in Sources */,
+				3FF5DF3625EA720C0051131D /* SessionManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,10 +455,12 @@
 				3FCF1D7D25E90599007C5EE8 /* APIManager.swift in Sources */,
 				3FCF1D3225E7E03D007C5EE8 /* GalleryCollectionViewCell.swift in Sources */,
 				3FCF1D6A25E8F192007C5EE8 /* SearchResultsController.swift in Sources */,
+				3FF5DF3E25EA736F0051131D /* RequestResult.swift in Sources */,
 				3FCF1D0525E7DEE7007C5EE8 /* MobiquityUITests.swift in Sources */,
 				3FCF1D2425E7DFB4007C5EE8 /* AppNavigationManager.swift in Sources */,
 				3FCF1D9225E9A222007C5EE8 /* LoadingReusableView.swift in Sources */,
 				3FCF1D4725E7E0F1007C5EE8 /* GalleryViewValues.swift in Sources */,
+				3FF5DF3725EA720C0051131D /* SessionManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

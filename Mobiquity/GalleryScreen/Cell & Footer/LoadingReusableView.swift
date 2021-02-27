@@ -7,11 +7,11 @@
 
 import UIKit
 
-class LoadingReusableView: UICollectionReusableView {
-    
-    var activityIndicator: UIActivityIndicatorView!
+final class LoadingReusableView: UICollectionReusableView {
     
     static let reuseIdentifier = "LoadingReusableView"
+    
+    private var activityIndicator: UIActivityIndicatorView!
     
     // MARK: Public Methods
     override init(frame: CGRect) {
@@ -20,7 +20,6 @@ class LoadingReusableView: UICollectionReusableView {
         setupUI()
         activityIndicator.startAnimating()
         activityIndicator.isHidden = false
-    
     }
     
     required init?(coder: NSCoder) {
@@ -34,7 +33,7 @@ class LoadingReusableView: UICollectionReusableView {
     private func setupUI() {
         backgroundColor = .clear
         
-        activityIndicator = UIActivityIndicatorView(style: .medium)
+        activityIndicator = UIActivityIndicatorView(style: .large)
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(activityIndicator)

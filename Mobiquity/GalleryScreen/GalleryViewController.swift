@@ -210,7 +210,7 @@ extension GalleryViewController: UICollectionViewDataSource {
 extension GalleryViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         
-        if indexPath.row == (viewValues.photosToShow.count / 2) && !isLoading {
+        if indexPath.row == (viewValues.photosToShow.count - 10) && !isLoading {
             isLoading = true
             viewModel.loadMorePhotos()
         }
