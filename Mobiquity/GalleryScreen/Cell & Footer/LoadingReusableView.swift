@@ -27,7 +27,8 @@ final class LoadingReusableView: UICollectionReusableView {
     }
     
     override func prepareForReuse() {
-      //  activityIndicator.stopAnimating()
+        activityIndicator.stopAnimating()
+        activityIndicator.isHidden = true
     }
 
     private func setupUI() {

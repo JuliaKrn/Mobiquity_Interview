@@ -9,7 +9,6 @@ import UIKit
 
 protocol GalleryViewProtocol {
 
-    
 }
 
 class GalleryViewController: UIViewController, GalleryViewProtocol {
@@ -19,6 +18,7 @@ class GalleryViewController: UIViewController, GalleryViewProtocol {
         static let smallPadding: CGFloat = 8.0
         static let standardPadding: CGFloat = 20.0
         static let largePadding: CGFloat = 36.0
+        static let footerHeight: CGFloat = 100.0
     }
     
     // MARK: Properties
@@ -94,12 +94,7 @@ extension GalleryViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    private func showSearchEmptyResult(for theme: String) {
-        // TODO:
-    }
-    
     // MARK: Loader
-    
     private func updateScreenLoader(shouldEnable: Bool) {
         galleryCollectionView.isUserInteractionEnabled = !shouldEnable
         loadingIndicator.isHidden = !shouldEnable
@@ -249,7 +244,7 @@ extension GalleryViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         
         if isLoading {
-            return CGSize(width: collectionView.bounds.width, height: 100)
+            return CGSize(width: collectionView.bounds.width, height: Constants.footerHeight)
         } else {
             return CGSize.zero
         }
@@ -258,6 +253,7 @@ extension GalleryViewController: UICollectionViewDataSource {
 }
 
 extension GalleryViewController: UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         
         if indexPath.row == (viewValues.photosToShow.count - 10) && !isLoading {
@@ -265,8 +261,7 @@ extension GalleryViewController: UICollectionViewDelegate {
             viewModel.loadMorePhotos()
         }
     }
-    
-    // TODO: add state when there is no moro photos to load
+
 }
 
 // MARK: - Search Bar Delegates
