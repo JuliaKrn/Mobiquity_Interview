@@ -18,7 +18,6 @@ class GalleryViewModelTests: XCTestCase {
         let controller = GalleryViewController()
         let apiManager = APIManagerMock()
         let viewModel = GalleryViewModel(view: controller, apiManager: apiManager)
-        controller.viewModel = viewModel
 
         sut = viewModel
     }

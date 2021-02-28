@@ -10,6 +10,8 @@ import FlickrKit
 import FBSnapshotTestCase
 @testable import Mobiquity
 
+// Iuliia: Screenshots can be found in .../Mobiquity/MobiquityTests/ReferenceImages_64/
+
 class GalleryViewControllerSnapshotTests: FBSnapshotTestCase {
     
     var sut: GalleryViewController!
@@ -17,7 +19,7 @@ class GalleryViewControllerSnapshotTests: FBSnapshotTestCase {
     override func setUp() {
         super.setUp()
         
-        recordMode = true // false
+        recordMode = false
     }
     
     override func tearDown() {
