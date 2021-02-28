@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F3B1D8125EB861200953228 /* GalleryViewModelMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3B1D8025EB861200953228 /* GalleryViewModelMock.swift */; };
+		3F3B1D8625EB862500953228 /* GalleryViewValuesMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3B1D8525EB862500953228 /* GalleryViewValuesMock.swift */; };
+		3F3B1D9E25EB8D3400953228 /* GalleryViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3B1D9D25EB8D3400953228 /* GalleryViewSnapshotTests.swift */; };
 		3FCF1CE325E7DEE0007C5EE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCF1CE225E7DEE0007C5EE8 /* AppDelegate.swift */; };
 		3FCF1CEC25E7DEE7007C5EE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FCF1CEB25E7DEE7007C5EE8 /* Assets.xcassets */; };
 		3FCF1CEF25E7DEE7007C5EE8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FCF1CED25E7DEE7007C5EE8 /* LaunchScreen.storyboard */; };
-		3FCF1CFA25E7DEE7007C5EE8 /* MobiquityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCF1CF925E7DEE7007C5EE8 /* MobiquityTests.swift */; };
+		3FCF1CFA25E7DEE7007C5EE8 /* GalleryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCF1CF925E7DEE7007C5EE8 /* GalleryViewModelTests.swift */; };
 		3FCF1D0525E7DEE7007C5EE8 /* MobiquityUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCF1D0425E7DEE7007C5EE8 /* MobiquityUITests.swift */; };
 		3FCF1D2225E7DFB4007C5EE8 /* AppNavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCF1D2125E7DFB4007C5EE8 /* AppNavigationManager.swift */; };
 		3FCF1D2325E7DFB4007C5EE8 /* AppNavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCF1D2125E7DFB4007C5EE8 /* AppNavigationManager.swift */; };
@@ -39,6 +42,7 @@
 		3FCF1D9025E9A222007C5EE8 /* LoadingReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCF1D8F25E9A222007C5EE8 /* LoadingReusableView.swift */; };
 		3FCF1D9125E9A222007C5EE8 /* LoadingReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCF1D8F25E9A222007C5EE8 /* LoadingReusableView.swift */; };
 		3FCF1D9225E9A222007C5EE8 /* LoadingReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCF1D8F25E9A222007C5EE8 /* LoadingReusableView.swift */; };
+		3FE106AC25EB8FA400B77E95 /* APIManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE106AB25EB8FA400B77E95 /* APIManagerMock.swift */; };
 		3FF5DF3525EA720C0051131D /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF5DF3425EA720C0051131D /* SessionManager.swift */; };
 		3FF5DF3625EA720C0051131D /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF5DF3425EA720C0051131D /* SessionManager.swift */; };
 		3FF5DF3725EA720C0051131D /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF5DF3425EA720C0051131D /* SessionManager.swift */; };
@@ -46,6 +50,7 @@
 		3FF5DF3D25EA736F0051131D /* RequestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF5DF3B25EA736F0051131D /* RequestResult.swift */; };
 		3FF5DF3E25EA736F0051131D /* RequestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF5DF3B25EA736F0051131D /* RequestResult.swift */; };
 		8A760DBEC5E004035B9CD366 /* Pods_Mobiquity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 318D35C52A9A1B477B5CEB10 /* Pods_Mobiquity.framework */; };
+		E519785F86436CDE563E67DC /* Pods_MobiquityTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FD4952D25A9F37C6CC9AD79 /* Pods_MobiquityTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,14 +72,19 @@
 
 /* Begin PBXFileReference section */
 		04F6194BD67E9D342EC2FBF4 /* Pods-Mobiquity.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mobiquity.debug.xcconfig"; path = "Target Support Files/Pods-Mobiquity/Pods-Mobiquity.debug.xcconfig"; sourceTree = "<group>"; };
+		05A18DAE8D0ECC1D29386A8B /* Pods-MobiquityTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobiquityTests.debug.xcconfig"; path = "Target Support Files/Pods-MobiquityTests/Pods-MobiquityTests.debug.xcconfig"; sourceTree = "<group>"; };
+		07F3FF5C292F3E49C6219AF6 /* Pods-MobiquityTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobiquityTests.release.xcconfig"; path = "Target Support Files/Pods-MobiquityTests/Pods-MobiquityTests.release.xcconfig"; sourceTree = "<group>"; };
 		318D35C52A9A1B477B5CEB10 /* Pods_Mobiquity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mobiquity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F3B1D8025EB861200953228 /* GalleryViewModelMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewModelMock.swift; sourceTree = "<group>"; };
+		3F3B1D8525EB862500953228 /* GalleryViewValuesMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewValuesMock.swift; sourceTree = "<group>"; };
+		3F3B1D9D25EB8D3400953228 /* GalleryViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewSnapshotTests.swift; sourceTree = "<group>"; };
 		3FCF1CDF25E7DEE0007C5EE8 /* Mobiquity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mobiquity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FCF1CE225E7DEE0007C5EE8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3FCF1CEB25E7DEE7007C5EE8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3FCF1CEE25E7DEE7007C5EE8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3FCF1CF025E7DEE7007C5EE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FCF1CF525E7DEE7007C5EE8 /* MobiquityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobiquityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3FCF1CF925E7DEE7007C5EE8 /* MobiquityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobiquityTests.swift; sourceTree = "<group>"; };
+		3FCF1CF925E7DEE7007C5EE8 /* GalleryViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewModelTests.swift; sourceTree = "<group>"; };
 		3FCF1CFB25E7DEE7007C5EE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FCF1D0025E7DEE7007C5EE8 /* MobiquityUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobiquityUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FCF1D0425E7DEE7007C5EE8 /* MobiquityUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobiquityUITests.swift; sourceTree = "<group>"; };
@@ -88,6 +98,8 @@
 		3FCF1D6725E8F192007C5EE8 /* SearchResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsController.swift; sourceTree = "<group>"; };
 		3FCF1D7A25E90599007C5EE8 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		3FCF1D8F25E9A222007C5EE8 /* LoadingReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingReusableView.swift; sourceTree = "<group>"; };
+		3FD4952D25A9F37C6CC9AD79 /* Pods_MobiquityTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobiquityTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FE106AB25EB8FA400B77E95 /* APIManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagerMock.swift; sourceTree = "<group>"; };
 		3FF5DF3425EA720C0051131D /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		3FF5DF3B25EA736F0051131D /* RequestResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestResult.swift; sourceTree = "<group>"; };
 		E6605BBFDDE55337C03FC33D /* Pods-Mobiquity.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mobiquity.release.xcconfig"; path = "Target Support Files/Pods-Mobiquity/Pods-Mobiquity.release.xcconfig"; sourceTree = "<group>"; };
@@ -106,6 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E519785F86436CDE563E67DC /* Pods_MobiquityTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,8 +137,20 @@
 			children = (
 				04F6194BD67E9D342EC2FBF4 /* Pods-Mobiquity.debug.xcconfig */,
 				E6605BBFDDE55337C03FC33D /* Pods-Mobiquity.release.xcconfig */,
+				05A18DAE8D0ECC1D29386A8B /* Pods-MobiquityTests.debug.xcconfig */,
+				07F3FF5C292F3E49C6219AF6 /* Pods-MobiquityTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		3F3B1D7925EB85DA00953228 /* SnapshotTests */ = {
+			isa = PBXGroup;
+			children = (
+				3F3B1D8025EB861200953228 /* GalleryViewModelMock.swift */,
+				3F3B1D8525EB862500953228 /* GalleryViewValuesMock.swift */,
+				3F3B1D9D25EB8D3400953228 /* GalleryViewSnapshotTests.swift */,
+			);
+			path = SnapshotTests;
 			sourceTree = "<group>";
 		};
 		3FCF1CD625E7DEE0007C5EE8 = {
@@ -167,8 +192,10 @@
 		3FCF1CF825E7DEE7007C5EE8 /* MobiquityTests */ = {
 			isa = PBXGroup;
 			children = (
-				3FCF1CF925E7DEE7007C5EE8 /* MobiquityTests.swift */,
+				3F3B1D7925EB85DA00953228 /* SnapshotTests */,
+				3FCF1CF925E7DEE7007C5EE8 /* GalleryViewModelTests.swift */,
 				3FCF1CFB25E7DEE7007C5EE8 /* Info.plist */,
+				3FE106AB25EB8FA400B77E95 /* APIManagerMock.swift */,
 			);
 			path = MobiquityTests;
 			sourceTree = "<group>";
@@ -234,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				318D35C52A9A1B477B5CEB10 /* Pods_Mobiquity.framework */,
+				3FD4952D25A9F37C6CC9AD79 /* Pods_MobiquityTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -264,9 +292,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3FCF1D0C25E7DEE7007C5EE8 /* Build configuration list for PBXNativeTarget "MobiquityTests" */;
 			buildPhases = (
+				636F577ADFA115A27D1DCDD3 /* [CP] Check Pods Manifest.lock */,
 				3FCF1CF125E7DEE7007C5EE8 /* Sources */,
 				3FCF1CF225E7DEE7007C5EE8 /* Frameworks */,
 				3FCF1CF325E7DEE7007C5EE8 /* Resources */,
+				B37D863330DC973ACEC1DC5D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -387,6 +417,45 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		636F577ADFA115A27D1DCDD3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MobiquityTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B37D863330DC973ACEC1DC5D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MobiquityTests/Pods-MobiquityTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MobiquityTests/Pods-MobiquityTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MobiquityTests/Pods-MobiquityTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C1E263B4CB6E6B2C15380599 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -436,11 +505,15 @@
 				3FCF1D7C25E90599007C5EE8 /* APIManager.swift in Sources */,
 				3FCF1D3125E7E03D007C5EE8 /* GalleryCollectionViewCell.swift in Sources */,
 				3FCF1D6925E8F192007C5EE8 /* SearchResultsController.swift in Sources */,
+				3F3B1D8625EB862500953228 /* GalleryViewValuesMock.swift in Sources */,
+				3F3B1D9E25EB8D3400953228 /* GalleryViewSnapshotTests.swift in Sources */,
 				3FF5DF3D25EA736F0051131D /* RequestResult.swift in Sources */,
-				3FCF1CFA25E7DEE7007C5EE8 /* MobiquityTests.swift in Sources */,
+				3FCF1CFA25E7DEE7007C5EE8 /* GalleryViewModelTests.swift in Sources */,
 				3FCF1D2325E7DFB4007C5EE8 /* AppNavigationManager.swift in Sources */,
 				3FCF1D9125E9A222007C5EE8 /* LoadingReusableView.swift in Sources */,
+				3F3B1D8125EB861200953228 /* GalleryViewModelMock.swift in Sources */,
 				3FCF1D4625E7E0F1007C5EE8 /* GalleryViewValues.swift in Sources */,
+				3FE106AC25EB8FA400B77E95 /* APIManagerMock.swift in Sources */,
 				3FF5DF3625EA720C0051131D /* SessionManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -649,6 +722,7 @@
 		};
 		3FCF1D0D25E7DEE7007C5EE8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 05A18DAE8D0ECC1D29386A8B /* Pods-MobiquityTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -670,6 +744,7 @@
 		};
 		3FCF1D0E25E7DEE7007C5EE8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 07F3FF5C292F3E49C6219AF6 /* Pods-MobiquityTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";

@@ -1,16 +1,24 @@
 PODS:
   - FlickrKit (1.0.9)
+  - iOSSnapshotTestCase (6.2.0):
+    - iOSSnapshotTestCase/SwiftSupport (= 6.2.0)
+  - iOSSnapshotTestCase/Core (6.2.0)
+  - iOSSnapshotTestCase/SwiftSupport (6.2.0):
+    - iOSSnapshotTestCase/Core
 
 DEPENDENCIES:
   - FlickrKit
+  - iOSSnapshotTestCase
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - FlickrKit
+    - iOSSnapshotTestCase
 
 SPEC CHECKSUMS:
   FlickrKit: 79ffaf64a12293ba2b1aa8a2e53a4958cb113256
+  iOSSnapshotTestCase: 9ab44cb5aa62b84d31847f40680112e15ec579a6
 
-PODFILE CHECKSUM: 3f208041d919d5e56390d08b9ac01b41188668a2
+PODFILE CHECKSUM: 48c94c9737f735f47614b44bd153b5f71e5b2fc0
 
 COCOAPODS: 1.7.1

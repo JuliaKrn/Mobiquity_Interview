@@ -17,7 +17,7 @@ protocol GalleryViewModelProtocol {
     func getSearchList() -> [String]?
 }
 
-class GalleryViewModel: GalleryViewModelProtocol {
+final class GalleryViewModel: GalleryViewModelProtocol {
     
     private enum ViewThemeType {
         case `default`
@@ -48,7 +48,7 @@ class GalleryViewModel: GalleryViewModelProtocol {
     }
     
     // MARK: Public Methods
-    init(view: GalleryViewProtocol, apiManager: APIManagerProtocol, additionalManagers: Any? = nil) {
+    init(view: GalleryViewProtocol, apiManager: APIManagerProtocol) {
         self.view = view
         self.apiManager = apiManager
         
@@ -92,7 +92,6 @@ extension GalleryViewModel {
         }
     }
 
-    
     private func fetchThemedPhotos(theme: String) {
         viewState = .loading(viewValues)
 

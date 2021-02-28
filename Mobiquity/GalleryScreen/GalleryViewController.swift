@@ -39,7 +39,7 @@ class GalleryViewController: UIViewController, GalleryViewProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel.updateValues = { [weak self] in
+         viewModel.updateValues = { [weak self] in
             DispatchQueue.main.async {
                 self?.render()
             }
@@ -112,6 +112,8 @@ extension GalleryViewController {
 extension GalleryViewController {
     
     private func setup() {
+        view.backgroundColor = .systemBackground
+        
         setupNavigationBar()
         setupGallerySection()
     }
