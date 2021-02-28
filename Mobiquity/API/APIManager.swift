@@ -11,36 +11,27 @@ import FlickrKit
 protocol APIManagerProtocol {
     func fetchDefaultPhotos(completion: @escaping([UIImage], Bool) -> Void)
     func fetchThemedPhotos(theme: String, completion: @escaping([UIImage], Bool) -> Void)
-    
     func reset()
 }
 
 final class APIManager: APIManagerProtocol {
     
-    static let shared = APIManager()
-    
     private enum Constants {
-        static let apiKey = "04556db74aafe128ef601b9d64dcd045"
-        static let secret = "3839bf3af2a37e74"
         static let photosPerPage = "20"
     }
-        
+    
     private let flickrManager: FlickrKit
     private let sessionManager: SessionManager
     
-    // TODO: move page to ViewModel?
     private var page = 0
+    private var maxPageNumber: Int?
+    private var images: [UIImage] = []
     
-    var images: [UIImage] = []
-    
-    private init() {
-        flickrManager = FlickrKit.shared()
-        flickrManager.initialize(withAPIKey: Constants.apiKey, sharedSecret: Constants.secret)
-        
+    init(flickrManager: FlickrKit) {
+        self.flickrManager = flickrManager
         sessionManager = SessionManager()
     }
     
-    // TODO: bool can be used for is it last page or not
     func fetchDefaultPhotos(completion: @escaping([UIImage], Bool) -> Void) {
         
         fetchInterestingPhotosURLs { [weak self] (urls, success) in
@@ -48,26 +39,21 @@ final class APIManager: APIManagerProtocol {
                 return
             }
             
-            guard !urls.isEmpty else {
-                completion([], false)
+            self.fetchPhotos(from: urls) { (photos, success) in
+                completion(photos, success)
+            }
+        }
+    }
+    
+    func fetchThemedPhotos(theme: String, completion: @escaping([UIImage], Bool) -> Void) {
+        
+        fetchThemePhotosURLs(theme: theme) { [weak self] (urls, success) in
+            guard let self = self else {
                 return
             }
             
-            let dispatchGroup = DispatchGroup()
-            
-            for url in urls {
-                dispatchGroup.enter()
-                
-                self.fetchPhoto(from: url) { (image) in
-                    if let image = image {
-                        self.images.append(image)
-                    }
-                    dispatchGroup.leave()
-                }
-            }
-            
-            dispatchGroup.notify(queue: DispatchQueue.main) {
-                completion(self.images, true)
+            self.fetchPhotos(from: urls) { (photos, success) in
+                completion(photos, success)
             }
         }
     }
@@ -75,6 +61,37 @@ final class APIManager: APIManagerProtocol {
     func reset() {
         images = []
         page = 0
+        maxPageNumber = nil
+    }
+    
+}
+
+// MARK: - Private
+extension APIManager {
+    
+    private func fetchPhotos(from urls: [URL], completion: @escaping([UIImage], Bool) -> Void) {
+        
+        guard !urls.isEmpty else {
+            completion([], false)
+            return
+        }
+        
+        let dispatchGroup = DispatchGroup()
+        
+        for url in urls {
+            dispatchGroup.enter()
+            
+            self.fetchPhoto(from: url) { (image) in
+                if let image = image {
+                    self.images.append(image)
+                }
+                dispatchGroup.leave()
+            }
+        }
+        
+        dispatchGroup.notify(queue: DispatchQueue.main) {
+            completion(self.images, true)
+        }
     }
     
     private func fetchPhoto(from url: URL, completion: @escaping(UIImage?) -> Void) {
@@ -91,20 +108,20 @@ final class APIManager: APIManagerProtocol {
         }
     }
     
-    // TODO: prevent from loading the last page
-    private func isTheLastPage() -> Bool {
-        return false
-    }
-
 }
 
 // MARK: - Interestingness Photos
 extension APIManager {
     
     private func fetchInterestingPhotosURLs(completion: @escaping([URL], Bool) -> Void) {
-        let flickrInteresting = FKFlickrInterestingnessGetList()
-        
         page += 1
+        
+        if let maxPageNumber = maxPageNumber, page > maxPageNumber {
+            completion([], true)
+            return
+        }
+        
+        let flickrInteresting = FKFlickrInterestingnessGetList()
         flickrInteresting.page = String(page)
         flickrInteresting.per_page = Constants.photosPerPage
         
@@ -117,6 +134,11 @@ extension APIManager {
                   let photoArray = self.flickrManager.photoArray(fromResponse: response) else {
                 completion([], false)
                 return
+            }
+            
+            if let photos = response["photos"] as? [String: Any],
+               let totalPages = photos["pages"] as? Int {
+                self.maxPageNumber = totalPages
             }
             
             DispatchQueue.global(qos: .userInitiated).async {
@@ -133,41 +155,14 @@ extension APIManager {
 // MARK: - Theme Photos
 extension APIManager {
     
-    func fetchThemedPhotos(theme: String, completion: @escaping([UIImage], Bool) -> Void) {
-        
-        fetchThemePhotosURLs(theme: theme) { [weak self] (urls, success) in
-            guard let self = self else {
-                return
-            }
-            
-            guard !urls.isEmpty else {
-                completion([], false)
-                return
-            }
-            
-            let dispatchGroup = DispatchGroup()
-            
-            for url in urls {
-                dispatchGroup.enter()
-                
-                self.fetchPhoto(from: url) { (image) in
-                    if let image = image {
-                        self.images.append(image)
-                    }
-                    dispatchGroup.leave()
-                }
-            }
-            
-            dispatchGroup.notify(queue: DispatchQueue.main) {
-                completion(self.images, true)
-            }
-        }
-        
-    }
-    
-    
     func fetchThemePhotosURLs(theme: String, completion: @escaping([URL], Bool) -> Void) {
         page += 1
+        
+        if let maxPageNumber = maxPageNumber, page > maxPageNumber {
+            completion([], true)
+            return
+        }
+        
         let args = ["text": theme,
                     "per_page": Constants.photosPerPage,
                     "page": String(page)]
@@ -183,6 +178,11 @@ extension APIManager {
                 return
             }
             
+            if let photos = response["photos"] as? [String: Any],
+               let totalPages = photos["pages"] as? Int {
+                self.maxPageNumber = totalPages
+            }
+            
             DispatchQueue.global(qos: .userInitiated).async {
                 let photoURLs = photoArray.compactMap {
                     self.flickrManager.photoURL(for: .largeSquare150, fromPhotoDictionary: $0)
@@ -191,6 +191,5 @@ extension APIManager {
             }
         })
     }
-    
     
 }

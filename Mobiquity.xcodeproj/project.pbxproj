@@ -179,7 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				3FCF1CF025E7DEE7007C5EE8 /* Info.plist */,
-				3FCF1D5525E7F9B9007C5EE8 /* Models */,
+				3FCF1D5525E7F9B9007C5EE8 /* API */,
 				3FCF1CE225E7DEE0007C5EE8 /* AppDelegate.swift */,
 				3FCF1D2125E7DFB4007C5EE8 /* AppNavigationManager.swift */,
 				3FCF1D3D25E7E0A2007C5EE8 /* ViewState.swift */,
@@ -230,14 +230,14 @@
 			path = Supporting;
 			sourceTree = "<group>";
 		};
-		3FCF1D5525E7F9B9007C5EE8 /* Models */ = {
+		3FCF1D5525E7F9B9007C5EE8 /* API */ = {
 			isa = PBXGroup;
 			children = (
 				3FCF1D7A25E90599007C5EE8 /* APIManager.swift */,
 				3FF5DF3425EA720C0051131D /* SessionManager.swift */,
 				3FF5DF3B25EA736F0051131D /* RequestResult.swift */,
 			);
-			path = Models;
+			path = API;
 			sourceTree = "<group>";
 		};
 		3FF5DF4225EA86320051131D /* Cell & Footer */ = {

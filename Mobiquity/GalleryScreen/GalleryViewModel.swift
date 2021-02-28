@@ -86,18 +86,18 @@ extension GalleryViewModel {
     private func fetchDefaultPhotos() {
         viewState = .loading(viewValues)
 
-        apiManager.fetchDefaultPhotos { (images, canLoadMore) in
+        apiManager.fetchDefaultPhotos { (images, succeess) in
             self.viewValues.photosToShow = images
-            self.viewState = .loaded(self.viewValues)
+            self.viewState = succeess ? .loaded(self.viewValues) : .error(self.viewValues)
         }
     }
 
     private func fetchThemedPhotos(theme: String) {
         viewState = .loading(viewValues)
 
-        apiManager.fetchThemedPhotos(theme: theme, completion: { (images, canLoadMore) in
+        apiManager.fetchThemedPhotos(theme: theme, completion: { (images, succeess) in
             self.viewValues.photosToShow = images
-            self.viewState = .loaded(self.viewValues)
+            self.viewState = succeess ? .loaded(self.viewValues) : .error(self.viewValues)
         })
     }
     
@@ -112,7 +112,6 @@ extension GalleryViewModel {
         }
         
         searchList.append(theme)
-        print("user defaults : \(searchList)")
         UserDefaults.standard.setValue(searchList, forKey: Constants.photoSearchListKey)
     }
 

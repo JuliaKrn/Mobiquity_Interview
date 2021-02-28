@@ -11,7 +11,9 @@ import UIKit
 final class AppNavigationManager {
     
     static let shared = AppNavigationManager()
+    
     let navigation = UINavigationController()
+    var apiManager: APIManagerProtocol?
     
     private init() {
         navigation.view.backgroundColor = .systemBackground
@@ -21,9 +23,12 @@ final class AppNavigationManager {
     }
     
     func showGalleryScreen() {
-        let viewController = GalleryViewController()
+        guard let apiManager = apiManager else {
+            return
+        }
         
-        let viewModel = GalleryViewModel(view: viewController, apiManager: APIManager.shared)
+        let viewController = GalleryViewController()
+        let viewModel = GalleryViewModel(view: viewController, apiManager: apiManager)
         viewController.viewModel = viewModel
         
         navigation.pushViewController(viewController, animated: true)
